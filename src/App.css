@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.welcome-message p{
+    color:#1f2937 ;
+}
+
+.welcome-message{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+}
+
+.card-grid-container{
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    max-width: 1200px;
+    gap: 25px;
+    margin: 0 auto;
+    justify-content: center;  
+    align-content: center;        
+    
+}
+
+.quick-actions{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+}

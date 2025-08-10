@@ -1,0 +1,109 @@
+        /* Quick Actions */
+        .quick-actions {
+          margin-bottom: 2rem;
+        }
+
+        .quick-actions h3 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #1e293b;
+          margin-bottom: 1rem;
+        }
+
+        .quick-actions-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .quick-action {
+          background-color: white;
+          border-radius: 0.5rem;
+          padding: 1.5rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e2e8f0;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+
+        .quick-action:hover {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transform: scale(1.05);
+        }
+
+        .quick-action-icon {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+        }
+
+        .quick-action-icon svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          color: white;
+        }
+
+        .bg-blue {
+          background-color: #3b82f6;
+        }
+
+        .bg-green {
+          background-color: #10b981;
+        }
+
+        .bg-light-blue {
+          background-color: #93c5fd;
+        }
+
+        .bg-orange {
+          background-color: #f59e0b;
+        }
+
+        .quick-action-title {
+          color: #1e293b;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .quick-action-description {
+          color: #64748b;
+          font-size: 0.875rem;
+        }
+
+        /* Bottom Grid */
+        .bottom-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          gap: 2rem;
+        }
+
+        .panel {
+          background-color: white;
+          border-radius: 0.5rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e2e8f0;
+        }
+
+        .panel-header {
+          padding: 1.5rem;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .panel-header h3 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #1e293b;
+        }
+
+        .panel-header p {
+          font-size: 0.875rem;
+          color: #64748b;
+        }
+
+        .panel-content {
+          padding: 1.5rem;
+        }

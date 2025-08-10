@@ -1,0 +1,55 @@
+        /* Activity Items */
+        .activity-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.75rem 0;
+          border-bottom: 1px solid #f1f5f9;
+        }
+
+        .activity-item:last-child {
+          border-bottom: none;
+        }
+
+        .activity-item-left {
+          display: flex;
+          align-items: center;
+        }
+
+        .activity-status-dot {
+          width: 0.5rem;
+          height: 0.5rem;
+          border-radius: 50%;
+          margin-right: 0.75rem;
+        }
+
+        .status-green {
+          background-color: #10b981;
+        }
+
+        .status-blue {
+          background-color: #3b82f6;
+        }
+
+        .status-yellow {
+          background-color: #f59e0b;
+        }
+
+        .status-red {
+          background-color: #ef4444;
+        }
+
+        .activity-name {
+          color: #1e293b;
+          font-weight: 500;
+        }
+
+        .activity-status {
+          color: #64748b;
+          font-size: 0.875rem;
+        }
+
+        .activity-time {
+          color: #64748b;
+          font-size: 0.875rem;
+        }
