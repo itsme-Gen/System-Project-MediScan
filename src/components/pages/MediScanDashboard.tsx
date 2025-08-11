@@ -10,15 +10,17 @@ import {
   Upload, 
   Users, 
   FileText,
-  Languages,
   User,
   Stethoscope
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 import './MediScanDashboard.css'
 import StatCard from '../props/StatCard';
 import QuickAction from '../props/QuickAction';
 import ActivityItem from '../props/ActivityItem';
 import SystemStatus from '../props/SystemStatus';
+
 
 interface userInfoProps{
   name:String;
@@ -31,6 +33,13 @@ const MediScanDashboard: React.FC = () => {
     name:"Dr. Sarah Johnson",
     role:"Nurse"
   })
+  const navigate = useNavigate();
+
+ const handleCick = () =>{
+  navigate("/scan")
+  window.scrollTo(0,0)
+ }
+
   return (
     <div className="dashboard">
       {/* Header */}
@@ -47,10 +56,6 @@ const MediScanDashboard: React.FC = () => {
           </div>
           
           <div className="header-right">
-            <div className="language-selector">
-              <Languages />
-              <span>EN / TL</span>
-            </div>
             <div className="notification-bell">
               <Bell />
               <span className="notification-badge">2</span>
@@ -71,11 +76,11 @@ const MediScanDashboard: React.FC = () => {
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button active">
+          <button className="nav-button active" onClick={()=>{navigate("/"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>
-          <button className="nav-button">
+          <button className="nav-button" onClick={()=>{navigate("/scan");window.scrollTo(0,0);}}>
             <Camera />
             Scan ID
           </button>
@@ -138,6 +143,7 @@ const MediScanDashboard: React.FC = () => {
           <h3>Quick Actions</h3>
           <div className="quick-actions-grid">
             <QuickAction
+              onClick={handleCick}
               title="Scan Patient ID"
               description="Use camera to scan patient identification"
               icon={<Camera />}

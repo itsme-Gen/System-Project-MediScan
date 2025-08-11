@@ -1,40 +1,33 @@
 import React, { useState } from 'react';
 import { Stethoscope, Mail, Lock, User, Phone, Building, CreditCard, Shield } from 'lucide-react';
 import './Login.css';
-// Import your existing MediScanDashboard component
-import MediScanDashboard from './MediScanDashboard'; // Adjust the path as needed
 
 interface FormData {
-  // Personal Information
   firstName: string;
   middleName: string;
   lastName: string;
-  
-  // Professional Information
-  role: string;
+  role: string; 
   department: string;
   licenseNumber: string;
   hospitalId: string;
-  
-  // Contact Information
   email: string;
   phoneNumber: string;
-  
-  // Security
   password: string;
   confirmPassword: string;
 }
 
-const Login: React.FC = () => {
+interface LoginProps {
+  onLogin: () => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [signInData, setSignInData] = useState({
     email: '',
     password: ''
   });
-  
+
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     middleName: '',
@@ -64,27 +57,18 @@ const Login: React.FC = () => {
     try {
       if (activeTab === 'signin') {
         console.log('Sign in submitted:', signInData);
-        
-        // authentication process
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Simple validation dito gagawins and API Call
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
         if (signInData.email && signInData.password) {
-          setLoggedInUser(signInData.email);
-          setIsLoggedIn(true);
+          onLogin(); 
+          window.scrollTo(0,0)
         } else {
           alert('Please enter valid credentials');
         }
       } else {
         console.log('Sign up submitted:', formData);
-        
-        //registration process
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        //validation for signup
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
         if (formData.email && formData.password && formData.password === formData.confirmPassword) {
-          setLoggedInUser(formData.email);
-          setIsLoggedIn(true);
+          onLogin(); // Trigger parent to log in
         } else {
           alert('Please fill all required fields and ensure passwords match');
         }
@@ -96,30 +80,6 @@ const Login: React.FC = () => {
       setIsLoading(false);
     }
   };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setLoggedInUser('');
-    setSignInData({ email: '', password: '' });
-    setFormData({
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      role: '',
-      department: '',
-      licenseNumber: '',
-      hospitalId: '',
-      email: '',
-      phoneNumber: '',
-      password: '',
-      confirmPassword: ''
-    });
-  };
-
-  // Conditional rendering
-  if (isLoggedIn) {
-    return <MediScanDashboard />;
-  }
 
   const renderSignInForm = () => (
     <>
@@ -359,7 +319,7 @@ const Login: React.FC = () => {
     <div className="mediscan-container">
       <div className="mediscan-header">
         <div className="mediscan-icon">
-          <Stethoscope size={32} color="white" />
+          <Stethoscope size={48} color="white" />
         </div>
         <h1 className="mediscan-title">MediScan</h1>
         <p className="mediscan-subtitle">Medical Record Verification System</p>
@@ -395,10 +355,13 @@ const Login: React.FC = () => {
           {activeTab === 'signin' ? renderSignInForm() : renderSignUpForm()}
 
           <button type="submit" className="submit-button" disabled={isLoading}>
-            {isLoading ? 
-              (activeTab === 'signin' ? 'Signing In...' : 'Creating Account...') :
-              (activeTab === 'signin' ? 'Sign In' : 'Create Account')
-            }
+            {isLoading
+              ? activeTab === 'signin'
+                ? 'Signing In...'
+                : 'Creating Account...'
+              : activeTab === 'signin'
+              ? 'Sign In'
+              : 'Create Account'}
           </button>
         </form>
       </div>
