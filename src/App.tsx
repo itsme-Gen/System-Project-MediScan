@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScanID from './components/pages/ScanID'
 import MediScanDashboard from './components/pages/MediScanDashboard'
 import Login from './components/pages/Login'
+import OCRResults from './components/pages/OCRResults'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MediScanDashboard />} />
           <Route path="/scan" element={<ScanID />} />
+          <Route path='/ocr' element={<OCRResults/>}/>
         </Routes>
       )}
     </BrowserRouter>

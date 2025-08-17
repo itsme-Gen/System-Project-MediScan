@@ -12,14 +12,11 @@ import {
   Zap,
   Stethoscope,
   User,
-  Clock,
-  Users,
-  CheckCircle,
   MessageCircle
 } from 'lucide-react';
 import './ScanID.css';
 import { useNavigate } from 'react-router-dom';
-import StatCard from '../props/StatCard';
+
 
 interface userInfoProps {
   name: string;
@@ -74,7 +71,7 @@ const ScanID: React.FC = () => {
       setIsProcessing(true);
       setTimeout(() => {
         setIsProcessing(false);
-        alert('OCR Processing completed! Text extracted from ID document.');
+        navigate('/ocr', { state: { imageData: capturedImage } });
       }, 2000);
     }
   };

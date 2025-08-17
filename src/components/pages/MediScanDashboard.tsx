@@ -35,10 +35,11 @@ const MediScanDashboard: React.FC = () => {
   })
   const navigate = useNavigate();
 
- const handleCick = () =>{
+ const navigateToScan = () =>{
   navigate("/scan")
   window.scrollTo(0,0)
- }
+ };
+
 
   return (
     <div className="dashboard">
@@ -143,13 +144,14 @@ const MediScanDashboard: React.FC = () => {
           <h3>Quick Actions</h3>
           <div className="quick-actions-grid">
             <QuickAction
-              onClick={handleCick}
+              onClick={navigateToScan}
               title="Scan Patient ID"
               description="Use camera to scan patient identification"
               icon={<Camera />}
               bgColor="bg-blue"
             />
             <QuickAction
+              onClick={navigateToScan}
               title="Upload ID Image"
               description="Upload an existing patient ID image"
               icon={<Upload />}
