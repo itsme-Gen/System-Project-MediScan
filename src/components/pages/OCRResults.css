@@ -162,8 +162,8 @@
 }
 
 .form-input[readonly] {
-  background-color: #f5f5f5; /* light gray when readonly */
-  cursor: not-allowed; /* normal pointer */
+  background-color: #f5f5f5; 
+  cursor: not-allowed; 
 }
 
 .form-input:focus {
@@ -174,7 +174,7 @@
 
 .form-input:disabled {
   background-color: #f5f5f5;
-  cursor: not-allowed; /* only when truly disabled */
+  cursor: not-allowed; 
 }
 
 

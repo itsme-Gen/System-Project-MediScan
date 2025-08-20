@@ -77,7 +77,7 @@ const ScanID: React.FC = () => {
   };
 
   return (
-    <div className="mediscan-app">
+    <div className="mediscan-apps">
       
       {/* Header */}
       <header className="header">
@@ -147,7 +147,7 @@ const ScanID: React.FC = () => {
         </div>
 
         {/* Card Grid */}
-        <div className="card-grid">
+        <div className="card-grids">
           {/* Capture Photo Card */}
           <div className="card">
             <div className="card-header">

@@ -14,48 +14,7 @@
           background-color: #f5f7fa;
         }
 
-       
 
-        /* Navigation Styles */
-        .navigation {
-          background: #fff;
-          border-bottom: 1px solid #e1e5e9;
-          padding: 0 20px;
-          overflow-x: auto;
-        }
-
-        .nav-tabs {
-          display: flex;
-          gap: 0;
-          min-width: max-content;
-        }
-
-        .nav-tab {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 12px 20px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 500;
-          color: #6c757d;
-          border-bottom: 3px solid transparent;
-          transition: all 0.3s ease;
-          white-space: nowrap;
-        }
-
-        .nav-tab:hover {
-          color: #1976d2;
-          background-color: #f8f9fa;
-        }
-
-        .nav-tab.active {
-          color: #1976d2;
-          border-bottom-color: #1976d2;
-          background-color: #f8f9fa;
-        }
 
         /* Main Content Styles */
         .main-content {
@@ -108,7 +67,7 @@
         }
 
         /* Card Grid Styles */
-        .card-grid {
+        .card-grids {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 24px;

@@ -4,8 +4,9 @@ import ScanID from './components/pages/ScanID'
 import MediScanDashboard from './components/pages/MediScanDashboard'
 import Login from './components/pages/Login'
 import OCRResults from './components/pages/OCRResults'
+import MedicalInfo from './components/pages/MedicalInfo'
 
-const App = () => {
+const App : React.FC  = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<MediScanDashboard />} />
           <Route path="/scan" element={<ScanID />} />
           <Route path='/ocr' element={<OCRResults/>}/>
+          <Route path='/medicalinfo' element={<MedicalInfo/>}/>
         </Routes>
       )}
     </BrowserRouter>

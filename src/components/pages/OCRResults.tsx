@@ -232,7 +232,7 @@ const OCRResults: React.FC = () => {
             <Search size={16} />
             Search Records
           </button>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={() =>{navigate("/medicalinfo"); window.scrollTo(0,0);}}>
             Next
             <ChevronRight size={16} />
           </button>

@@ -71,14 +71,6 @@
           gap: 1rem;
         }
 
-        .language-selector {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: #64748b;
-          font-size: 0.875rem;
-        }
-
         .notification-bell {
           position: relative;
           color: #64748b;
