@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import styles from "./MedicalHistoryCard.module.css";
-import { Heart } from 'lucide-react';
+import { Heart, Trash } from 'lucide-react';
 
 interface MedicalHistoryProps {
   condition: string;
-  dob: string;
+  date: string;
   status: string;
 }
 
 const MedicalHistoryCard: React.FC = () => {
   const [formData, setFormData] = useState<MedicalHistoryProps>({
     condition: "",
-    dob: "",
+    date: "",
     status: ""
   });
+
+  const deleteRecord = (index: number) => {
+    setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index));
+  };
+
+
+  const [records, setRecords] = useState<MedicalHistoryProps[]>([]);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -22,13 +29,17 @@ const MedicalHistoryCard: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted:", formData);
+
+    if (formData.condition && formData.date && formData.status) {
+      setRecords((prev) => [...prev, formData]); 
+    }
 
     setFormData({
-        condition:"",
-        dob:"",
-        status:""
-    })
+      condition: "",
+      date: "",
+      status: ""
+    });
+    
   };
 
   return (
@@ -52,9 +63,9 @@ const MedicalHistoryCard: React.FC = () => {
 
         <input
           type="date"
-          name="dob"
+          name="date"
           onChange={handleFormChange}
-          value={formData.dob}
+          value={formData.date}
         />
 
         <select
@@ -70,6 +81,30 @@ const MedicalHistoryCard: React.FC = () => {
 
         <button id="add_button" type="submit">Add</button>
       </form>
+
+      {/* Display all records */}
+      <div className={styles.records}>
+        {records.length > 0 ? (
+          records.map((record, index) => (
+            <div key={index} className={styles.record_item}>
+              <p><strong>Condition:</strong> {record.condition}</p>
+              <p><strong>Date:</strong> {record.date}</p>
+              <p><strong>Status:</strong> {record.status}</p>
+              <button onClick={() => deleteRecord(index)}>
+                <Trash
+                style={{
+                  color:"red"
+                }}
+                />
+                
+              </button>
+            </div>
+
+          ))
+        ) : (
+          null
+        )}
+      </div>
     </div>
   );
 };

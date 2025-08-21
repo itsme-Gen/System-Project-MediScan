@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from "./LabResult.module.css";
-import {FileText} from 'lucide-react'
+import {FileText, Trash} from 'lucide-react'
 
 interface labResultProps{
     testName:string,
@@ -18,6 +18,12 @@ const LabResult = () => {
         referenceRange:""
     })
 
+    const deleteRecord = (index: number) => {
+      setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index));
+    };
+
+    const [records,setRecords] =useState<labResultProps[]>([])
+
     const handleFormChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         const {name,value} = e.target;
         setFormData((prev) => ({...prev,[name]:value}) )
@@ -25,7 +31,12 @@ const LabResult = () => {
 
     const handleFormSubmit = (e: React.FormEvent) =>{
         e.preventDefault()
-        console.log(formData)
+
+        if(formData.testName && formData.date && formData.result
+          &&formData.referenceRange
+        ){
+          setRecords((prev) =>[...prev,formData])
+        }
 
         setFormData({
             testName:"",
@@ -75,13 +86,37 @@ const LabResult = () => {
         <input
           type="text"
           placeholder='Reference range'
-          name="referanceRage"
+          name="referenceRange"
           value={formData.referenceRange}
           onChange={handleFormChange}
         />
  
         <button id="add_button" type="submit">Add</button>
       </form>
+      {/* Display all records */}
+      <div className={styles.records}>
+        {records.length > 0 ? (
+          records.map((record, index) => (
+            <div key={index} className={styles.record_item}>
+              <p><strong>Test Name:</strong> {record.testName}</p>
+              <p><strong>Date:</strong> {record.date}</p>
+              <p><strong>Result:</strong> {record.result}</p>
+              <p><strong>Reference Range:</strong> {record.referenceRange}</p>
+              <button onClick={() => deleteRecord(index)}>
+                <Trash
+                style={{
+                  color:"red"
+                }}
+                />
+                
+              </button>
+            </div>
+
+          ))
+        ) : (
+          null
+        )}
+      </div>
     </div>
   )
 }

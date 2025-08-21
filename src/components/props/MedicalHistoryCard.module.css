@@ -88,3 +88,25 @@
 .input_fields button:active {
   transform: scale(0.97);
 }
+
+.records {
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;       
+  margin-top: 20px;       
+}
+
+.record_item {
+  display: flex;
+  flex-direction: row;    
+  gap: 20px;              
+  padding: 10px;
+  border: 1px solid #ddd; 
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record_item p{
+  margin: 0;
+}

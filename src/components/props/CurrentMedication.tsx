@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from "./CurrentMedication.module.css"
-import { Pill } from 'lucide-react'
+import { Pill, Trash } from 'lucide-react'
 
 interface currentMedicationProps{
     medicationName:string,
@@ -18,6 +18,12 @@ const CurrentMedication = () => {
         prescribeBy:""
     })
 
+    const [records,setRecords] = useState<currentMedicationProps[]>([])
+
+       const deleteRecord = (index: number) => {
+        setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index));
+      };
+
     const handleFormChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         const {name,value} = e.target
         setFormData((prev) => ({...prev,[name]:value}))
@@ -25,7 +31,9 @@ const CurrentMedication = () => {
 
     const handleFormSubmit = (e: React.FormEvent) =>{
         e.preventDefault()
-        console.log(formData)
+        if(formData.medicationName && formData.dosage && formData.frequency && formData.prescribeBy){
+          setRecords((prev) => [...prev,formData])
+        }
 
         setFormData({
             medicationName:"",
@@ -83,6 +91,31 @@ const CurrentMedication = () => {
  
         <button id="add_button" type="submit">Add</button>
       </form>
+
+       {/* Display all records */}
+      <div className={styles.records}>
+        {records.length > 0 ? (
+          records.map((record, index) => (
+            <div key={index} className={styles.record_item}>
+              <p><strong>Medication Name:</strong> {record.medicationName}</p>
+              <p><strong>Dosage:</strong> {record.dosage}</p>
+              <p><strong>Frequency:</strong> {record.frequency}</p>
+              <p><strong>Prescribe By:</strong> {record.prescribeBy}</p>
+              <button onClick={() => deleteRecord(index)}>
+                <Trash
+                style={{
+                  color:"red"
+                }}
+                />
+                
+              </button>
+            </div>
+
+          ))
+        ) : (
+          null
+        )}
+      </div>
     </div>
   )
 }

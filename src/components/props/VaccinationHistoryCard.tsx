@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from "./Vaccination.module.css"
-import { Syringe } from 'lucide-react'
+import { Syringe, Trash } from 'lucide-react'
 
 interface vaccinationHistoryProps{
   vaccineName:string,
@@ -15,13 +15,22 @@ const VaccinationHistory:React.FC = () => {
     secondDose:""
   })
 
+  const [records,setRecords] =useState<vaccinationHistoryProps[]>([])
+
+   const deleteRecord = (index: number) => {
+    setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index));
+  };
+
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const {name,value} = e.target
     setFormData((prev) =>({...prev,[name]:value}))
   }
   const handleFormSubmit = ( e: React.FormEvent) =>{
     e.preventDefault()
-    console.log(formData);
+    if(formData.vaccineName && formData.firstDose && formData.secondDose){
+        setRecords((prev) => [...prev,formData])
+    }
+  
 
     setFormData({
       vaccineName:"",
@@ -69,6 +78,30 @@ const VaccinationHistory:React.FC = () => {
 
         <button id="add_button" type="submit">Add</button>
       </form>
+
+       {/* Display all records */}
+      <div className={styles.records}>
+        {records.length > 0 ? (
+          records.map((record, index) => (
+            <div key={index} className={styles.record_item}>
+              <p><strong>Vaccine Name:</strong> {record.vaccineName}</p>
+              <p><strong>First Dose:</strong> {record.firstDose}</p>
+              <p><strong>Second Dose:</strong> {record.secondDose}</p>
+              <button onClick={() => deleteRecord(index)}>
+                <Trash
+                style={{
+                  color:"red"
+                }}
+                />
+                
+              </button>
+            </div>
+
+          ))
+        ) : (
+          null
+        )}
+      </div>
     </div>
   )
 }
