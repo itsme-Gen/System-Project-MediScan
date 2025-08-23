@@ -1,28 +1,14 @@
-import React, { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ScanID from './components/pages/ScanID'
-import MediScanDashboard from './components/pages/MediScanDashboard'
-import Login from './components/pages/Login'
-import OCRResults from './components/pages/OCRResults'
-import MedicalInfo from './components/pages/MedicalInfo'
-
-const App : React.FC  = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  return (
-    <BrowserRouter>
-      {!isLoggedIn ? (
-        <Login onLogin={() => setIsLoggedIn(true)} />
-      ) : (
-        <Routes>
-          <Route path="/" element={<MediScanDashboard />} />
-          <Route path="/scan" element={<ScanID />} />
-          <Route path='/ocr' element={<OCRResults/>}/>
-          <Route path='/medicalinfo' element={<MedicalInfo/>}/>
-        </Routes>
-      )}
-    </BrowserRouter>
-  )
-}
-
-export default App
+import React from 'react' // import React
+import Header from './components/Header' // import Header component
+import Assistant from './components/Assistant' // import Assistant component
+const App: React.FC = () => { // declare App functional component
+  return ( // return JSX UI
+    <div className="app"> {/* root app container */} 
+      <Header /> {/* top header/navigation */} 
+      <main className="container"> {/* main content wrapper */} 
+        <Assistant /> {/* assistant page content */} 
+      </main> {/* end main */} 
+    </div> // end root
+  ) // end return
+} // end component
+export default App // export App as default
