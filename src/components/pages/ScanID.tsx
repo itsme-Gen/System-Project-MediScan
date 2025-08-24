@@ -121,7 +121,7 @@ const ScanID: React.FC = () => {
             <Camera />
             Scan ID
           </button>
-          <button className="nav-button">
+          <button className="nav-button" onClick={()=>{navigate('/search');window.scrollTo(0,0)}}>
             <Search />
             Search
           </button>

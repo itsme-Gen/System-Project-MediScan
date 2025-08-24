@@ -1,0 +1,25 @@
+.search {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+.medical_search_card{
+    margin: 50px;
+}
+
+.totalPatientCard {
+  margin: 50px;         
+}
+
+.totalPatientCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px;        
+  justify-content: center;  
+  align-items: center;   
+}
+.quickFilters{
+    margin: 50px;
+}
+
+    

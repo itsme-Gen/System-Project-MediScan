@@ -168,6 +168,38 @@
           background-color: #3b82f680;
         }
 
+        .page-header {
+          text-align: center;
+          margin: 40px;
+        }
+
+        .page-title {
+          font-size: 28px;
+          font-weight: 600;
+          color: #2c3e50;
+          margin: 0 0 8px 0;
+        }
+
+        .page-subtitle {
+          font-size: 16px;
+          color: #6c757d;
+          margin: 0 0 16px 0;
+        }
+
+        .back-link {
+          color: #1976d2;
+          text-decoration: none;
+          font-size: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+          color: #1565c0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
           .header-content {
