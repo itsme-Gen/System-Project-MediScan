@@ -77,7 +77,7 @@ const ScanID: React.FC = () => {
   };
 
   return (
-    <div className="mediscan-apps">
+    <div className="scanID">
       
       {/* Header */}
       <header className="header">

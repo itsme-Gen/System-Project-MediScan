@@ -38,7 +38,7 @@ const MedicalInfo: React.FC = () => {
 
 
   return (
-    <div className="ScanID">
+    <div className="medical-info">
       {/* Header */}
       <header className="header">
         <div className="header-content">
