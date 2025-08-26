@@ -129,7 +129,7 @@ const ScanID: React.FC = () => {
             <FileText />
             Records
           </button>
-          <button className="nav-button">
+          <button className="nav-button" onClick={()=>{navigate("/assistant");window.scrollTo(0,0)}}>
             <MessageCircle />
             Assistant
           </button>

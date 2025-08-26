@@ -1,41 +1,25 @@
-import React, { useState } from 'react';
-import { 
-  Home, 
-  Search, 
-  FileText, 
-  Bell,
-  Camera,
-  ArrowLeft,
-  Stethoscope,
-  User,
-  MessageCircle
-} from 'lucide-react';
-import "./SearchUI.css"
+import { ArrowLeft, Bell, Camera, FileText, Home, MessageCircle, Search, Stethoscope, User } from 'lucide-react';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import MedicalSearchCard from '../props/MedicalSearchCard';
-import TotalPatientCard from '../props/TotalPatientCard';
-import MedicalRecordsCard from '../props/MedicalRecordsCard';
-import RecentVisitsCard from '../props/RecentVisitCard';
-import HealthcareFilters from '../props/HealthcareFilters';
-
+import "./AiAssistant.css"
+import QuickActionsMedicalCard from '../props/QuickActionsMedicalCard';
+import ChatAssistantCard from '../props/ChatAssistantCard';
+import AssistantCapabilitiesCard from '../props/AssistantCapabilitiesCard';
 
 interface userInfoProps {
   name: string;
   role: string;
 }
 
-const SearchUI: React.FC = () => {
+const AIAssistant  = () => {
 
-
-  const [user] = useState<userInfoProps>({
-    name: "Dr. Sarah Johnson",
-    role: "Nurse"
-  });
-
-  const navigate = useNavigate();
-
+const [user,setUser] =useState<userInfoProps>({
+    name:"Sarah Johnson",
+    role:"Nurse"
+})
+const navigate = useNavigate();
   return (
-    <div className="search">
+     <div className="search">
       
       {/* Header */}
       <header className="header">
@@ -79,7 +63,7 @@ const SearchUI: React.FC = () => {
             <Camera />
             Scan ID
           </button>
-          <button className="nav-button active" onClick={()=>{navigate('/search');window.scrollTo(0,0)}}>
+          <button className="nav-button" onClick={()=>{navigate('/search');window.scrollTo(0,0)}}>
             <Search />
             Search
           </button>
@@ -87,7 +71,7 @@ const SearchUI: React.FC = () => {
             <FileText />
             Records
           </button>
-          <button className="nav-button" onClick={()=>{navigate('/assistant');window.scrollTo(0,0)}}>
+          <button className="nav-button active">
             <MessageCircle />
             Assistant
           </button>
@@ -96,30 +80,25 @@ const SearchUI: React.FC = () => {
 
         {/* Page Header */}
         <div className="page-header">
-          <h1 className="page-title">Smart Search</h1>
-          <p className="page-subtitle">Use natural language to search through patient records and medical data</p>
+          <h1 className="page-title">AI Medical Assistant</h1>
+          <p className="page-subtitle">Chat with out AI assistant for medical record queries and administrative help</p>
           <button className="back-link" onClick={() => {navigate("/");window.scrollTo(0,0);}}>
             <ArrowLeft size={14} />
             Back to Dashboard
           </button>
         </div>
-        <div className="medical_search_card">
-          <MedicalSearchCard/>
-        </div>
 
-        <div className="totalPatientCard">
-          <div className="totalPatientCardGrid">
-            <TotalPatientCard/>
-            <MedicalRecordsCard/>
-            <RecentVisitsCard/>
+        <div className="chatAssistant">
+          <div className="chatAssistantGrid">
+              <QuickActionsMedicalCard/>
+              <ChatAssistantCard/>
           </div>
         </div>
-
-        <div className="quickFilters">
-          <HealthcareFilters/>
+        <div className="assistantCapabilitiesCard"> 
+          <AssistantCapabilitiesCard/>
         </div>
-    </div>
-  );
-};
+        </div>
+  )
+}
 
-export default SearchUI;
+export default AIAssistant

@@ -1,0 +1,43 @@
+.chatAssistant {
+  background: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.chatAssistantGrid {
+  display: grid;
+  grid-template-columns: 280px 1fr; 
+  gap: 1rem;
+  height: calc(100vh - 2rem); 
+}
+
+/* Quick Actions Card */
+.chatAssistantGrid > :first-child {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Chat Assistant Card */
+.chatAssistantGrid > :last-child {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive (stack vertically on small screens) */
+@media (max-width: 768px) {
+  .chatAssistantGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .chatAssistantGrid > :first-child {
+    margin-bottom: 1rem;
+  }
+}
