@@ -1,0 +1,48 @@
+
+        /*Profile Menu*/
+
+        .profile-menu {
+          position: absolute;
+          top: 70px;
+          right:50px;
+          background-color: white;
+          border-radius: 0.5rem; 
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+          border: 1px solid #e5e7eb; 
+          padding: 0.5rem; 
+          width: 12rem;
+          z-index: 1000;
+        }
+
+        .profile-menu .menu-items {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .profile-menu button {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem; 
+          padding: 0.5rem 0.75rem; 
+          color: #374151; 
+          border-radius: 0.375rem; 
+          transition: background-color 0.2s ease-in-out;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+        }
+
+        .profile-menu button:hover {
+          background-color: #61dafbaa; 
+          color: black;
+        }
+
+        .profile-menu button svg {
+          color: #6b7280; 
+        }
+
+        .profile-menu button span {
+          font-size: 0.875rem; 
+        }
+

@@ -34,7 +34,7 @@
         .logo-icon {
           width: 2.5rem;
           height: 2.5rem;
-          background-color: #3b82f6;
+          background-color: #0073e6;
           border-radius: 0.5rem;
           display: flex;
           align-items: center;
@@ -94,7 +94,7 @@
         .user-avatar {
           width: 2rem;
           height: 2rem;
-          background-color: #3b82f6;
+          background-color: #0073e6;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -115,7 +115,7 @@
 
         .user-badge {
           font-size: 0.75rem;
-          color: #3b82f6;
+          color: #0073e6;
           background-color: #dbeafe;
           padding: 0.125rem 0.5rem;
           border-radius: 0.25rem;
@@ -156,7 +156,7 @@
 
         .nav-button.active {
           color: white;
-          background-color: #3b82f6;
+          background-color: #0073e6;
         }
 
         .nav-button:not(.active) {
@@ -165,7 +165,7 @@
         }
 
         .nav-button:not(.active):hover {
-          background-color: #3b82f680;
+          background-color: #61dafbaa;
         }
 
         .page-header {
@@ -187,7 +187,7 @@
         }
 
         .back-link {
-          color: #1976d2;
+          color: #0073e6;
           text-decoration: none;
           font-size: 14px;
           display: inline-flex;

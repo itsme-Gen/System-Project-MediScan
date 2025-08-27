@@ -3,7 +3,6 @@ import {
   Home, 
   Search, 
   FileText, 
-  Bell,
   Camera,
   ArrowLeft,
   Stethoscope,
@@ -17,6 +16,7 @@ import TotalPatientCard from '../props/TotalPatientCard';
 import MedicalRecordsCard from '../props/MedicalRecordsCard';
 import RecentVisitsCard from '../props/RecentVisitCard';
 import HealthcareFilters from '../props/HealthcareFilters';
+import ProfileMenu from '../props/ProfileMenu';
 
 
 interface userInfoProps {
@@ -28,11 +28,13 @@ const SearchUI: React.FC = () => {
 
 
   const [user] = useState<userInfoProps>({
-    name: "Dr. Sarah Johnson",
-    role: "Nurse"
+    name: "Dr. Juan Dela Cruz",
+    role: "Doctors"
   });
 
   const navigate = useNavigate();
+  
+  const [showProfileMenu,setShowProfileMenu]= useState(false);
 
   return (
     <div className="search">
@@ -51,14 +53,11 @@ const SearchUI: React.FC = () => {
           </div>
           
           <div className="header-right">
-            <div className="notification-bell">
-              <Bell />
-              <span className="notification-badge">2</span>
-            </div>
             <div className="user-profile">
-              <div className="user-avatar">
+              <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
+              <ProfileMenu show ={showProfileMenu}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>

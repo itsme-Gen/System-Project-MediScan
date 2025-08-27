@@ -1,10 +1,11 @@
-import { ArrowLeft, Bell, Camera, FileText, Home, MessageCircle, Search, Stethoscope, User } from 'lucide-react';
+import { ArrowLeft, Camera, FileText, Home, MessageCircle, Search, Stethoscope, User } from 'lucide-react';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import "./AiAssistant.css"
 import QuickActionsMedicalCard from '../props/QuickActionsMedicalCard';
 import ChatAssistantCard from '../props/ChatAssistantCard';
 import AssistantCapabilitiesCard from '../props/AssistantCapabilitiesCard';
+import ProfileMenu from '../props/ProfileMenu';
 
 interface userInfoProps {
   name: string;
@@ -14,9 +15,12 @@ interface userInfoProps {
 const AIAssistant  = () => {
 
 const [user,setUser] =useState<userInfoProps>({
-    name:"Sarah Johnson",
-    role:"Nurse"
+    name:"Dr. Juan Dela Cruz",
+    role:"Doctor"
 })
+
+const [showProfileMenu,setShowProfileMenu]=useState(false);
+
 const navigate = useNavigate();
   return (
      <div className="search">
@@ -35,14 +39,11 @@ const navigate = useNavigate();
           </div>
           
           <div className="header-right">
-            <div className="notification-bell">
-              <Bell />
-              <span className="notification-badge">2</span>
-            </div>
             <div className="user-profile">
-              <div className="user-avatar">
+              <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
+              <ProfileMenu show={showProfileMenu}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>

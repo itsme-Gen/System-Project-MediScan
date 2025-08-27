@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {  
-  Bell, 
   Camera, 
   Home, 
   MessageCircle, 
@@ -30,8 +29,8 @@ interface userInfoProps{
 
 const MedicalInfo: React.FC = () => {
   const [user,setUser] =useState<userInfoProps>({
-    name:"Dr. Sarah Johnson",
-    role:"Nurse"
+    name:"Dr. Juan Dela Cruz",
+    role:"Doctor"
   })
   const navigate = useNavigate();
 
@@ -53,10 +52,6 @@ const MedicalInfo: React.FC = () => {
           </div>
           
           <div className="header-right">
-            <div className="notification-bell">
-              <Bell />
-              <span className="notification-badge">2</span>
-            </div>
             <div className="user-profile">
               <div className="user-avatar">
                 <User />

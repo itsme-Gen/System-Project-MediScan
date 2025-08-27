@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Edit, RotateCcw, Search, ChevronRight,
   User, Calendar, Hash, MapPin, Droplet, Phone,
-  Camera, FileText, MessageCircle, Home, Stethoscope, Bell
+  Camera, FileText, MessageCircle, Home, Stethoscope
 } from 'lucide-react';
 import './OCRResults.css';
 
@@ -18,8 +18,8 @@ const OCRResults: React.FC = () => {
   const navigate = useNavigate();
 
   const [user] = useState<userInfoProps>({
-    name: "Sarah Johnson",
-    role: "Nurse"
+    name: "Dr. Juan Dela Cruz",
+    role: "Doctor"
   });
 
   // State to toggle edit mode
@@ -42,10 +42,6 @@ const OCRResults: React.FC = () => {
             </div>
 
             <div className="header-right">
-              <div className="notification-bell">
-                <Bell />
-                <span className="notification-badge">2</span>
-              </div>
               <div className="user-profile">
                 <div className="user-avatar">
                   <User />

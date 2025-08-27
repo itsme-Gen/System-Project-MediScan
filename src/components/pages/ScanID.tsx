@@ -3,7 +3,6 @@ import {
   Home, 
   Search, 
   FileText, 
-  Bell,
   Camera,
   Upload,
   ImageIcon,
@@ -16,6 +15,7 @@ import {
 } from 'lucide-react';
 import './ScanID.css';
 import { useNavigate } from 'react-router-dom';
+import ProfileMenu from '../props/ProfileMenu';
 
 
 interface userInfoProps {
@@ -27,11 +27,13 @@ const ScanID: React.FC = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [user] = useState<userInfoProps>({
-    name: "Dr. Sarah Johnson",
-    role: "Nurse"
+    name: "Dr. Juan Dela Cruz",
+    role: "Doctor"
   });
 
   const navigate = useNavigate();
+
+  const [showProfileMenu,setShowProfileMenu] = useState(false);
 
   const handleTakePhoto = () => {
     const canvas = document.createElement('canvas');
@@ -93,14 +95,11 @@ const ScanID: React.FC = () => {
           </div>
           
           <div className="header-right">
-            <div className="notification-bell">
-              <Bell />
-              <span className="notification-badge">2</span>
-            </div>
             <div className="user-profile">
-              <div className="user-avatar">
+              <div className="user-avatar"onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
+              <ProfileMenu show={showProfileMenu}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>

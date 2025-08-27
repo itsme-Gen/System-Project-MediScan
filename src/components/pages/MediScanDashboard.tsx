@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {  
-  Bell, 
   Camera, 
   CheckCircle, 
   Clock, 
@@ -11,7 +10,7 @@ import {
   Users, 
   FileText,
   User,
-  Stethoscope
+  Stethoscope,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +19,7 @@ import StatCard from '../props/StatCard';
 import QuickAction from '../props/QuickAction';
 import ActivityItem from '../props/ActivityItem';
 import SystemStatus from '../props/SystemStatus';
+import ProfileMenu from '../props/ProfileMenu';
 
 
 interface userInfoProps{
@@ -30,15 +30,28 @@ interface userInfoProps{
 
 const MediScanDashboard: React.FC = () => {
   const [user,setUser] =useState<userInfoProps>({
-    name:"Dr. Sarah Johnson",
-    role:"Nurse"
+    name:"Dr. Juan Dela Cruz",
+    role:"Doctor"
   })
-  const navigate = useNavigate();
+
+const [showProfileMenu,setShowProfileMenu] = useState(false);
+
+const navigate = useNavigate();
 
  const navigateToScan = () =>{
   navigate("/scan")
   window.scrollTo(0,0)
  };
+
+ const navigateToSearch = () =>{
+  navigate("/search")
+  window.scrollTo(0,0)
+ }
+
+ const navigateToAssistant = () =>{
+  navigate('/assistant')
+  window.scrollTo(0,0);
+ }
 
 
   return (
@@ -57,14 +70,11 @@ const MediScanDashboard: React.FC = () => {
           </div>
           
           <div className="header-right">
-            <div className="notification-bell">
-              <Bell />
-              <span className="notification-badge">2</span>
-            </div>
             <div className="user-profile">
-              <div className="user-avatar">
+              <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev) => !prev);}}>
                 <User />
               </div>
+               <ProfileMenu show={showProfileMenu} />
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>
@@ -162,12 +172,14 @@ const MediScanDashboard: React.FC = () => {
               description="Find patients using natural language"
               icon={<Search />}
               bgColor="bg-light-blue"
+              onClick={navigateToSearch}
             />
             <QuickAction
               title="AI Assistant"
               description="Chat with medical record assistant"
               icon={<MessageCircle />}
               bgColor="bg-orange"
+              onClick={navigateToAssistant}
             />
           </div>
         </div>
