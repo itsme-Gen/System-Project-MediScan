@@ -19,7 +19,7 @@ import StatCard from '../props/StatCard';
 import QuickAction from '../props/QuickAction';
 import ActivityItem from '../props/ActivityItem';
 import SystemStatus from '../props/SystemStatus';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu from '../props/ProfileMenuCard';
 
 
 interface userInfoProps{

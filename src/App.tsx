@@ -7,6 +7,7 @@ import OCRResults from './components/pages/OCRResults'
 import MedicalInfo from './components/pages/MedicalInfo'
 import SearchUI from './components/pages/SearchUI'
 import AIAssistant from './components/pages/AIAssistant'
+import ProfileMenu from './components/pages/ProfileMenu'
 
 const App : React.FC  = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -23,6 +24,7 @@ const App : React.FC  = () => {
           <Route path='/medicalinfo' element={<MedicalInfo/>}/>
           <Route path='/search' element={<SearchUI/>}/>
           <Route path='/assistant' element={<AIAssistant/>}/>
+          <Route path='/profile' element={<ProfileMenu/>}/>
         </Routes>
       )}
     </BrowserRouter>

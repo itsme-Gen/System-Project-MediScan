@@ -5,7 +5,7 @@ import "./AiAssistant.css"
 import QuickActionsMedicalCard from '../props/QuickActionsMedicalCard';
 import ChatAssistantCard from '../props/ChatAssistantCard';
 import AssistantCapabilitiesCard from '../props/AssistantCapabilitiesCard';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu from '../props/ProfileMenuCard';
 
 interface userInfoProps {
   name: string;

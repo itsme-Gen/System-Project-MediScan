@@ -1,6 +1,7 @@
 import React from "react";
 import { User, Settings, LogOut } from "lucide-react";
-import "./ProfileMenu.css";
+import "./ProfileMenuCard.css";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileMenuProps {
   show: boolean;
@@ -9,10 +10,12 @@ interface ProfileMenuProps {
 const ProfileMenu: React.FC<ProfileMenuProps> = ({ show }) => {
   if (!show) return null;
 
+  const navigate = useNavigate();
+
   return (
     <div className="profile-menu">
       <div className="menu-items">
-        <button>
+        <button onClick={()=>{navigate('/profile'); window.scrollTo(0,0);}}>
           <User size={16} />
           <span>Profile</span>
         </button>

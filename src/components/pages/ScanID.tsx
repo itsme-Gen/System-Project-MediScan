@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import './ScanID.css';
 import { useNavigate } from 'react-router-dom';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu from '../props/ProfileMenuCard';
 
 
 interface userInfoProps {
