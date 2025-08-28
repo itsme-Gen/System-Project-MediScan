@@ -16,7 +16,7 @@ import TotalPatientCard from '../props/TotalPatientCard';
 import MedicalRecordsCard from '../props/MedicalRecordsCard';
 import RecentVisitsCard from '../props/RecentVisitCard';
 import HealthcareFilters from '../props/HealthcareFilters';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu from '../props/ProfileMenuCard';
 
 
 interface userInfoProps {
