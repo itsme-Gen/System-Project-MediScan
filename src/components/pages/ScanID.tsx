@@ -16,7 +16,8 @@ import {
 import './ScanID.css';
 import { useNavigate } from 'react-router-dom';
 import ProfileMenu from '../props/ProfileMenu';
-
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 interface userInfoProps {
   name: string;
@@ -68,16 +69,44 @@ const ScanID: React.FC = () => {
     input.click();
   };
 
-  const handleProcessImage = () => {
-    if (capturedImage) {
-      setIsProcessing(true);
-      setTimeout(() => {
-        setIsProcessing(false);
-        navigate('/ocr', { state: { imageData: capturedImage } });
-      }, 2000);
+const handleProcessImage = async () => {
+  if (!capturedImage) {
+    toast.error("Please capture an image first."); // Toast for empty image
+    return;
+  }
+  
+  setIsProcessing(true);
+  try {
+    // Convert base64 to Blob
+    const res = await fetch(capturedImage);
+    const blob = await res.blob();
+    const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+    
+    // Prepare FormData
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    // Send to backend
+    const response = await axios.post("http://127.0.0.1:5000/classify", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    
+    const prediction = response.data.prediction; // "ID" or "Not ID"
+    console.log("Result", prediction);
+    
+    if (prediction === "ID") {
+      navigate("/ocr", { state: { imageData: capturedImage, prediction } });
+    } else {
+      toast.dismiss()
+      toast.error("Please Upload an ID");
     }
-  };
-
+  } catch (error) {
+    console.error("Error classifying image:", error);
+    toast.error("Failed to classify image. Please try again.");
+  } finally {
+    setIsProcessing(false);
+  }
+};
   return (
     <div className="scanID">
       
