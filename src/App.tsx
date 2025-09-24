@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import ScanID from './components/pages/ScanID'
@@ -11,6 +11,15 @@ import AIAssistant from './components/pages/AIAssistant'
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    if(token){
+      setIsLoggedIn(true)
+    }else{
+      setIsLoggedIn(false)
+    }
+  },[])
 
   return (
     <BrowserRouter>

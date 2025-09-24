@@ -131,7 +131,7 @@ const MedicalInfo: React.FC = () => {
                   <div className="save-card">
                     <SavePatientInfo/>
                 </div>
-s
+
             </div>
         </div>
       </main>

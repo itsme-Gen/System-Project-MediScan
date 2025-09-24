@@ -1,12 +1,17 @@
-import React from "react";
-import { User, Settings, LogOut } from "lucide-react";
-import "./ProfileMenu.css";
+import { LogOut, Settings, User } from "lucide-react";
 
 interface ProfileMenuProps {
   show: boolean;
+  handleLogout: () => void; // add this
 }
 
 const ProfileMenu: React.FC<ProfileMenuProps> = ({ show }) => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.reload(); // optional: refresh to reset state
+  };
+
   if (!show) return null;
 
   return (
@@ -22,7 +27,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ show }) => {
           <span>Settings</span>
         </button>
 
-        <button>
+        <button onClick={handleLogout}>
           <LogOut size={16} />
           <span>Logout</span>
         </button>
@@ -31,4 +36,4 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ show }) => {
   );
 };
 
-export default ProfileMenu;
+export default ProfileMenu

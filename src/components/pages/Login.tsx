@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Stethoscope, Mail, Lock, User, Phone, Building, CreditCard, Shield } from 'lucide-react';
 import './Login.css';
+import axios from 'axios';
 
 interface FormData {
   firstName: string;
@@ -50,36 +51,106 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-    try {
-      if (activeTab === 'signin') {
-        console.log('Sign in submitted:', signInData);
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
-        if (signInData.email && signInData.password) {
-          onLogin(); 
-          window.scrollTo(0,0)
-        } else {
-          alert('Please enter valid credentials');
-        }
-      } else {
-        console.log('Sign up submitted:', formData);
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
-        if (formData.email && formData.password && formData.password === formData.confirmPassword) {
-          onLogin(); // Trigger parent to log in
-        } else {
-          alert('Please fill all required fields and ensure passwords match');
-        }
+  try {
+    if (activeTab === 'signin') {
+      // Validate credentials
+      if (!signInData.email || !signInData.password) {
+        alert('Please enter valid credentials');
+        return;
       }
-    } catch (error) {
-      console.error('Authentication error:', error);
-      alert('Authentication failed. Please try again.');
-    } finally {
-      setIsLoading(false);
+
+      // API call 
+      const signInResponse = await axios.post("http://localhost:5000/signin", {
+        email: signInData.email,
+        password: signInData.password,
+        role: formData.role,
+        firstname: formData.firstName,
+        lastName:formData.lastName
+      });
+
+      //Proceed with login
+      if(signInResponse.status === 200 && signInResponse.data.token){
+        localStorage.setItem("token",signInResponse.data.token)
+        onLogin();
+      }
+      
+      window.scrollTo(0, 0);
+
+
+    } else {
+      // Registration
+      const { confirmPassword, ...dataToSend } = formData;
+
+      //Check password confirmation
+      if (formData.password !== formData.confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      // Check for empty fields
+      const isEmpty = Object.values(dataToSend).some(value => 
+        typeof value === 'string' ? value.trim() === "" : !value
+      );
+
+      if (isEmpty) {
+        console.log("All fields are required");
+        alert("All fields are required");
+        return;
+      }
+
+      // Additional validation for required fields
+      if (!formData.email || !formData.password) {
+        alert('Email and password are required');
+        return;
+      }
+
+      //API call after all validations pass
+      const response = await axios.post("http://localhost:5000/register", dataToSend);
+
+      //switch to signin tab
+      setActiveTab('signin');
+      console.log(response);
+      alert('Registration successful! Please sign in with your credentials.');
     }
-  };
+
+  } catch (error) {
+    console.error('Authentication error:', error);
+
+    //Error handling
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+      const message = error.response.data?.message || 'Authentication failed';
+
+      switch (status) {
+        case 400:
+          alert(message);
+          break;
+        case 401:
+          alert('Invalid email or password');
+          break;
+        case 409:
+          alert('Invalid Email or Password.Try Another');
+          break;
+        case 500:
+          alert('Server error. Please try again later');
+          break;
+        default:
+          alert(message);
+      }
+    } else if (axios.isAxiosError(error) && error.request) {
+      alert('Network error. Please check your connection and try again');
+    } else {
+      alert('Authentication failed. Please try again.');
+    }
+
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const renderSignInForm = () => (
     <>
