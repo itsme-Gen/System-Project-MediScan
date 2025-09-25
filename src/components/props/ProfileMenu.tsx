@@ -1,4 +1,14 @@
 import { LogOut, Settings, User } from "lucide-react";
+import React from "react";
+import "./ProfileMenu.css"
+
+export function handleLogout(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.setItem("loggedOutMessage","Successfully Logged Out!");
+  window.location.href = "/login"
+  
+}
 
 interface ProfileMenuProps {
   show: boolean;
@@ -6,11 +16,6 @@ interface ProfileMenuProps {
 }
 
 const ProfileMenu: React.FC<ProfileMenuProps> = ({ show }) => {
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.reload(); // optional: refresh to reset state
-  };
 
   if (!show) return null;
 

@@ -58,7 +58,7 @@ const OCRResults: React.FC = () => {
         {/* Navigation */}
         <nav className="navigation">
           <div className="nav-content">
-            <button className="nav-button" onClick={() => { navigate("/"); window.scrollTo(0, 0); }}>
+            <button className="nav-button" onClick={() => { navigate("/dashboard"); window.scrollTo(0, 0); }}>
               <Home />
               Dashboard
             </button>

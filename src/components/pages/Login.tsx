@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stethoscope, Mail, Lock, User, Phone, Building, CreditCard, Shield } from 'lucide-react';
 import './Login.css';
 import axios from 'axios';
+import {toast} from 'react-hot-toast';
 
 interface FormData {
   firstName: string;
@@ -51,15 +52,28 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsLoading(true);
+  const logOutMessage = (()=>{
+    useEffect(()=>{
+      const message = localStorage.getItem("loggedOutMessage")
+      if(message){
+        toast.dismiss()
+        toast.success(message)
+        localStorage.removeItem("loggedOutMessage")
+      }
+    },[])
+  })
+
+  logOutMessage()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
 
   try {
     if (activeTab === 'signin') {
       // Validate credentials
       if (!signInData.email || !signInData.password) {
-        alert('Please enter valid credentials');
+        toast.error('Please enter valid credentials');
         return;
       }
 
@@ -76,6 +90,8 @@ const handleSubmit = async (e: React.FormEvent) => {
       if(signInResponse.status === 200 && signInResponse.data.token){
         localStorage.setItem("token",signInResponse.data.token)
         onLogin();
+        toast.dismiss()
+        toast.success("Successfully Logged In")
       }
       
       window.scrollTo(0, 0);
@@ -87,7 +103,8 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       //Check password confirmation
       if (formData.password !== formData.confirmPassword) {
-        alert('Passwords do not match');
+        toast.dismiss()
+        toast.error("Passwords do not match");
         return;
       }
 
@@ -98,13 +115,15 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       if (isEmpty) {
         console.log("All fields are required");
-        alert("All fields are required");
+        toast.dismiss()
+        toast.error("All fields are required");
         return;
       }
 
       // Additional validation for required fields
       if (!formData.email || !formData.password) {
-        alert('Email and password are required');
+        toast.dismiss()
+        toast.error('Email and password are required');
         return;
       }
 
@@ -114,7 +133,8 @@ const handleSubmit = async (e: React.FormEvent) => {
       //switch to signin tab
       setActiveTab('signin');
       console.log(response);
-      alert('Registration successful! Please sign in with your credentials.');
+      toast.dismiss()
+      toast.success('Registration successful! Please sign in with your credentials.');
     }
 
   } catch (error) {
@@ -127,24 +147,32 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       switch (status) {
         case 400:
-          alert(message);
+          toast.error(message);
+          toast.dismiss()
           break;
         case 401:
-          alert('Invalid email or password');
+          toast.dismiss()
+          toast.error('Invalid email or password');
+          
           break;
         case 409:
-          alert('Invalid Email or Password.Try Another');
+          toast.dismiss()
+          toast.error('Invalid Email or Password.Try Another');
           break;
         case 500:
-          alert('Server error. Please try again later');
+          toast.dismiss()
+          toast.error('Server error. Please try again later');
           break;
         default:
-          alert(message);
+          toast.dismiss()
+          toast.error(message);
       }
     } else if (axios.isAxiosError(error) && error.request) {
-      alert('Network error. Please check your connection and try again');
+      toast.dismiss()
+      toast.error('Network error. Please check your connection and try again');
     } else {
-      alert('Authentication failed. Please try again.');
+      toast.dismiss()
+      toast.error('Authentication failed. Please try again.');
     }
 
   } finally {
@@ -427,7 +455,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <button type="submit" className="submit-button" disabled={isLoading}>
             {isLoading
-              ? activeTab === 'signin'
+              ? activeTab === 'signin' 
                 ? 'Signing In...'
                 : 'Creating Account...'
               : activeTab === 'signin'

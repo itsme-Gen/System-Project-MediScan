@@ -20,6 +20,7 @@ import QuickAction from '../props/QuickAction';
 import ActivityItem from '../props/ActivityItem';
 import SystemStatus from '../props/SystemStatus';
 import ProfileMenu from '../props/ProfileMenu';
+import { handleLogout } from '../props/ProfileMenu';
 
 
 interface userInfoProps{
@@ -74,7 +75,7 @@ const navigate = useNavigate();
               <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev) => !prev);}}>
                 <User />
               </div>
-               <ProfileMenu show={showProfileMenu} />
+               <ProfileMenu show={showProfileMenu} handleLogout={handleLogout} />
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>
@@ -87,7 +88,7 @@ const navigate = useNavigate();
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button active" onClick={()=>{navigate("/"); window.scrollTo(0,0);}}>
+          <button className="nav-button active" onClick={()=>{navigate("/dashboard"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>

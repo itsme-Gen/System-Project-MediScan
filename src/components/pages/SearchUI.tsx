@@ -16,7 +16,8 @@ import TotalPatientCard from '../props/TotalPatientCard';
 import MedicalRecordsCard from '../props/MedicalRecordsCard';
 import RecentVisitsCard from '../props/RecentVisitCard';
 import HealthcareFilters from '../props/HealthcareFilters';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu, { handleLogout } from '../props/ProfileMenu';
+
 
 
 interface userInfoProps {
@@ -57,7 +58,7 @@ const SearchUI: React.FC = () => {
               <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
-              <ProfileMenu show ={showProfileMenu}/>
+              <ProfileMenu show ={showProfileMenu} handleLogout={handleLogout}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>
@@ -70,7 +71,7 @@ const SearchUI: React.FC = () => {
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button" onClick={() =>{navigate("/"); window.scrollTo(0,0);}}>
+          <button className="nav-button" onClick={() =>{navigate("/dashboard"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>

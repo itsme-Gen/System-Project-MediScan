@@ -5,7 +5,7 @@ import "./AiAssistant.css"
 import QuickActionsMedicalCard from '../props/QuickActionsMedicalCard';
 import ChatAssistantCard from '../props/ChatAssistantCard';
 import AssistantCapabilitiesCard from '../props/AssistantCapabilitiesCard';
-import ProfileMenu from '../props/ProfileMenu';
+import ProfileMenu, { handleLogout } from '../props/ProfileMenu';
 
 interface userInfoProps {
   name: string;
@@ -14,7 +14,7 @@ interface userInfoProps {
 
 const AIAssistant  = () => {
 
-const [user,setUser] =useState<userInfoProps>({
+const [user,setUser] = useState<userInfoProps>({
     name:"Dr. Juan Dela Cruz",
     role:"Doctor"
 })
@@ -43,7 +43,7 @@ const navigate = useNavigate();
               <div className="user-avatar" onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
-              <ProfileMenu show={showProfileMenu}/>
+              <ProfileMenu show={showProfileMenu} handleLogout={handleLogout}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>
@@ -56,7 +56,7 @@ const navigate = useNavigate();
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button" onClick={() =>{navigate("/"); window.scrollTo(0,0);}}>
+          <button className="nav-button" onClick={() =>{navigate("/dashboard"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>

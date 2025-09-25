@@ -68,7 +68,7 @@ const MedicalInfo: React.FC = () => {
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button active" onClick={()=>{navigate("/"); window.scrollTo(0,0);}}>
+          <button className="nav-button active" onClick={()=>{navigate("/dashboard"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>

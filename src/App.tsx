@@ -8,6 +8,8 @@ import OCRResults from './components/pages/OCRResults'
 import MedicalInfo from './components/pages/MedicalInfo'
 import SearchUI from './components/pages/SearchUI'
 import AIAssistant from './components/pages/AIAssistant'
+import RedirectIfAuthenticated from './components/protectRoute/RedirecrIfAuthenticated'
+import ProtectedRoute from './components/protectRoute/ProtectedRoute'
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -27,12 +29,14 @@ const App: React.FC = () => {
         <Login onLogin={() => setIsLoggedIn(true)} />
       ) : (
         <Routes>
-          <Route path="/" element={<MediScanDashboard />} />
-          <Route path="/scan" element={<ScanID />} />
-          <Route path="/ocr" element={<OCRResults />} />
-          <Route path="/medicalinfo" element={<MedicalInfo />} />
-          <Route path="/search" element={<SearchUI />} />
-          <Route path="/assistant" element={<AIAssistant />} />
+          <Route path='/login' element={<RedirectIfAuthenticated isAuthenticated={isLoggedIn}><Login onLogin={() => setIsLoggedIn(true)} /></RedirectIfAuthenticated>} />
+          <Route path="/dashboard" element={<ProtectedRoute isAuthenticated={isLoggedIn}><MediScanDashboard /></ProtectedRoute>} />
+          <Route path="/scan" element={<ProtectedRoute isAuthenticated={isLoggedIn}><ScanID /></ProtectedRoute>} />
+          <Route path="/ocr" element={<ProtectedRoute isAuthenticated={isLoggedIn}><OCRResults /></ProtectedRoute>} />
+          <Route path="/medicalinfo" element={<ProtectedRoute isAuthenticated={isLoggedIn}><MedicalInfo /></ProtectedRoute>} />
+          <Route path="/search" element={<ProtectedRoute isAuthenticated={isLoggedIn}><SearchUI /></ProtectedRoute>} />
+          <Route path="/assistant" element={<ProtectedRoute isAuthenticated={isLoggedIn}><AIAssistant /></ProtectedRoute>} />
+          <Route path="*" element={<MediScanDashboard />} />
         </Routes>
       )}
       

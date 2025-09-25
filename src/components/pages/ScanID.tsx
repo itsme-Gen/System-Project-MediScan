@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import ProfileMenu from '../props/ProfileMenu';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { handleLogout } from '../props/ProfileMenu';
 
 interface userInfoProps {
   name: string;
@@ -122,13 +123,13 @@ const handleProcessImage = async () => {
               <p>Medical Record Verification</p>
             </div>
           </div>
-          
+              <ProfileMenu show={showProfileMenu} handleLogout={handleLogout}/>
           <div className="header-right">
             <div className="user-profile">
               <div className="user-avatar"onClick={()=>{setShowProfileMenu((prev)=>!prev)}}>
                 <User />
               </div>
-              <ProfileMenu show={showProfileMenu}/>
+              <ProfileMenu show={showProfileMenu} handleLogout={handleLogout}/>
               <div className="user-info">
                 <p>{user.name}</p>
                 <p className="user-badge">{user.role}</p>
@@ -141,7 +142,7 @@ const handleProcessImage = async () => {
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <button className="nav-button" onClick={() =>{navigate("/"); window.scrollTo(0,0);}}>
+          <button className="nav-button" onClick={() =>{navigate("/dashboard"); window.scrollTo(0,0);}}>
             <Home />
             Dashboard
           </button>
